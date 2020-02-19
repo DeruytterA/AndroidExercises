@@ -4,6 +4,9 @@
     <variable
         name="temp"
         type="com.example.oef.Temp" />
+    <variable
+        name="handlers"
+        type="com.example.oef.ForecastOverviewFragment" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
