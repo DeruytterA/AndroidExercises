@@ -3,7 +3,7 @@
 <data>
     <variable
         name="temp"
-        type="com.example.oef.Temp" />
+        type="com.example.oef.Temperature" />
     <variable
         name="handlers"
         type="com.example.oef.ForecastOverviewFragment" />
