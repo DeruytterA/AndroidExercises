@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.oef.databinding.FragmentForecastOverviewBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+data class Temp(
+    val temp: Int
+)
+
 class ForecastOverviewFragment : Fragment() {
 
     var TAG = "FORECAST"
@@ -60,12 +65,17 @@ class ForecastOverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_forecast_overview, container, false)
+        val binding = FragmentForecastOverviewBinding.inflate(inflater, container, false)
+        binding.temp = Temp(14)
+        return  binding.root
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(TAG, " CREATE")
     }
+
+
 
     override fun onStart() {
         super.onStart()
