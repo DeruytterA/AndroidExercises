@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ObservableInt
 import androidx.fragment.app.Fragment
 import com.example.oef.databinding.FragmentForecastOverviewBinding
 
@@ -13,24 +12,19 @@ class ForecastOverviewFragment : Fragment() {
 
     var TAG = "FORECAST"
 
-    lateinit var temperature: Temperature
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentForecastOverviewBinding.inflate(inflater, container, false)
-        binding.temp = temperature
-        binding.button.setOnClickListener{
-            temperature.temp.set(temperature.temp.get() + 1)
-        }
+        binding.temp = InjectorUtils(ForecastRepository()).provideForecastViewModelFactory().create(ForecastViewModel::class.java)
+        binding.lifecycleOwner = this
         return  binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        temperature = Temperature(ObservableInt(16))
         Log.v(TAG, " CREATE")
     }
 

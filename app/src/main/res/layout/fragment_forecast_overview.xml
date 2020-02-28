@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="temp"
-        type="com.example.oef.Temperature" />
-    <variable
-        name="handlers"
-        type="com.example.oef.ForecastOverviewFragment" />
+        type="com.example.oef.ForecastViewModel" />
 </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ForecastOverviewFragment">
@@ -56,14 +53,13 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView" />
 
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text='@{Integer.toString(temp.temp).concat("°")}'
+                android:text='@{temp.temperatureString}'
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 android:textSize="48sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -77,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:onClick="@{() -> temp.update() }"
                 android:text="@string/refresh"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -91,6 +88,19 @@
                 android:text="@string/details"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="4dp"
+                android:text='@{temp.lastUpdatedString}'
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="48sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
